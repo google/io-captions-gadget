@@ -1,0 +1,79 @@
+/*------------------reset----------------------*/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {  
+    margin:0; 
+    padding:0; 
+} 
+table { 
+    border-collapse:collapse; 
+    border-spacing:0; 
+} 
+fieldset,img {  
+    border:0; 
+} 
+address,caption,cite,code,dfn,em,strong,th,var { 
+    font-style:normal; 
+    font-weight:normal; 
+} 
+ol,ul { 
+    list-style:none; 
+} 
+caption,th { 
+    text-align:left; 
+} 
+h1,h2,h3,h4,h5,h6 { 
+    font-size:100%; 
+    font-weight:normal; 
+} 
+q:before,q:after { 
+    content:''; 
+} 
+abbr,acronym { border:0; 
+}
+
+/*------------------html elements-----------------------*/
+
+body {
+	font-family:Arial,sans-serif;
+	font-size:62.5%; /*--1em = 10px--*/
+}
+
+label,
+input,
+select,
+textarea {
+	font-family:Arial,sans-serif;
+}
+
+em {
+}
+
+hr {
+	background-color:#e5e5e5;
+	border:none;
+	color:#e5e5e5;
+	height:1px;
+	margin:0px 0px 18px 0px;
+	*margin:-8px 0px 10px 0px;
+	padding:0px 0px 0px 0px;
+}
+
+
+
+/*------------------generic classes-----------------------*/
+
+.clear {
+	clear:both;
+	font-size:0px;
+	height:0px;
+	line-height:0px;
+}
+
+.hide {
+	height:1px;
+	left:-9999em;
+	overflow:hidden;
+	position:absolute;
+	top:-9999em;
+	width:1px;
+}

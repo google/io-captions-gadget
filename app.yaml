@@ -1,0 +1,29 @@
+application: io-captions
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /_ah/warmup
+  script: warmup.py
+- url: /admin(/.*)?
+  script: admin.py
+  login: admin
+- url: /includes/(?:v[\d.]+/)?(.*)
+  static_files: includes/\1
+  upload: includes/(.*)
+  expiration: 30d
+- url: /images
+  static_dir: images/
+  expiration: 30d
+- url: /testfill
+  script: test_stream/fill.py
+- url: .*
+  script: main.py
+
+builtins:
+- deferred: on
+- appstats: on
+
+inbound_services:
+- warmup

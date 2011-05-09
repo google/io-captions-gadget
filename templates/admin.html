@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title>IO Captions Admin</title>
+</head>
+<body>
+	<h2>Events</h2>
+	<form action="" method="post">
+	{% for e in events %}
+	<h3>Event {{forloop.counter}}</h3>
+	
+		<div class="form-row">
+			<label for="event{{forloop.counter}}">Event ID:</label>
+			<input name="event{{forloop.counter}}" type="text" value="{{e.streamtext_id}}"/>
+		</div>
+		<div class="form-row">
+			<label for="title{{forloop.counter}}">Title:</label>
+			<input name="title{{forloop.counter}}" type="text" value="{{e.name|default:''}}"/>
+		</div>
+		<div class="form-row">
+			<label for="title{{forloop.counter}}">Default to open:</label>
+			<input name="open{{forloop.counter}}" type="checkbox" {% if e.default_open %} checked="checked"{% endif %}/>
+		</div>
+	<hr />
+	{% endfor %}
+		<div class="form-row">
+			<input type="submit" value="Save" />
+		</div>
+	</form>
+	<table>
+	<thead>
+		<tr><th>Event</th><th>Status</th></tr>
+		{% for e, status in statuses.items %}
+		<tr>
+			<td>{{e}}</td>
+			<td>{% if status %}Running{% else %}Not Running{% endif %}</td>
+			<td>
+			<form action="/admin/control" method="post">
+			<input type="hidden" value="{{e}}" name="key" />
+			{% if status %}
+			<input type="submit" name="control" value="Stop" /></td>
+			{% else %}
+			<input type="submit" name="control" value="Start" /></td
+			>{% endif %}
+			</form>
+		</tr>
+		{% endfor %}
+	</thead>
+	</table>
+</body>
+</html>

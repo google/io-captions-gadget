@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="favicon.ico" />
+<title>Google IO</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="includes/v{{static_version}}/css/generic.css" media="all" />
+<link rel="stylesheet" type="text/css" href="includes/v{{static_version}}/css/all.css" media="all" />
+<link rel="stylesheet" type="text/css" href="includes/v{{static_version}}/css/print.css" media="print" />
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+	document.write('<link rel="stylesheet" href="includes/css/js.css" type="text/css" media="screen" />');
+//--><!]]></script>
+<!--[if lt IE 7]>
+	<script type="text/javascript" src="includes/js/pngfix.js"></script>
+<![endif]-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript" src="/includes/v{{static_version}}/js/jquery-effects.js"></script>
+<script type="text/javascript">
+Stream.lang = '{{lang}}';
+Stream.eventId = '{{event.key.name}}';
+Stream.lasts = {{lasts|safe}};
+Stream.rtl_langs = {{rtl_langs|safe}};
+{% if event.default_open %}
+Stream.run = true;
+{% else %}
+setTimeout(function() {
+	Stream.run = false;
+}, 1000);
+{% endif %}
+  var _gaq = _gaq || [];
+  {% if ga_account %}
+  _gaq.push(['_setAccount', '{{ga_account}}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+{% endif %}
+</script>
+
+</head>
+<body class="gadget">
+<div class="gadgetWrapper"{% if not event.default_open %} style="height: 30px;"{% endif %}>
+	<div class="gadgetHeader">
+    	<h2><span id="liveNow" style="display:none;">Live right now: </span><span id="eventTitle">No event in progress</span></h2>
+    	{% if event.default_open %}
+    	<a href="" class="captionButton on" title="Captions on, click to turn off">Captions</a>
+    	{% else %}
+    	<a href="" class="captionButton off" title="Captions off, click to turn on">Captions</a>
+    	{% endif %}
+    </div>
+    <div class="gadgetContent">
+    	<div id="captions">
+    	  
+        </div>  
+        <ul class="gadgetControls">
+    		<li>
+    			<a href="" class="changeLanguge">Change language</a>
+    			<ul class="languageList">
+    			<li class="active"><a class="languageChoice" href="#" id="lang-en">English</a></li>
+    			{% for lang, name in languages %}
+				<li><a class="languageChoice" href="#" id="lang-{{lang}}">{{name}}</a></li>
+				{% endfor %}
+    			</ul>
+    		</li>
+    		<li><a href="" class="active fontSizeLink smallFontSize">A</a></li>
+	    	<li><a href="" class="fontSizeLink mediumFontSize">A</a></li>
+	    	<li><a href="" class="fontSizeLink largeFontSize">A</a></li>
+	    	<li><a href="" class="changeFontSize">Change font size</a></li>
+		    <li><a href="" class="scrollUp">Scroll Up</a></li>
+    		<li><a href="" class="scrollDown">Scroll Down</a></li>
+    	</ul>
+    	<div id="messageBox" style="display:none;"></div>
+    </div>
+    
+</div>
+
+
+</body>
+</html>

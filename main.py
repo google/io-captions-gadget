@@ -61,6 +61,7 @@ class Update(webapp.RequestHandler):
             return
         cacheKey = 'output-%s-%s-%s' % (lang, last, event_key)
         outputCacheTime = 1
+        max_age = 1
         response = memcache.get(cacheKey)
         if response is None:
             stream.set_should_translate(lang)
@@ -76,7 +77,15 @@ class Update(webapp.RequestHandler):
                 'status': status,
                 'title': stream.get_title(event_key)
             })
+            if output != '':
+                outputCacheTime = 5
+                max_age = 5
             memcache.set(cacheKey, response, outputCacheTime)
+        else:
+            decoded = simplejson.loads(response)
+            if decoded['output'] != '':
+                max_age = 5
+        self.response.headers['Cache-Control'] = 'public,max-age=%s' % max_age
         self.response.out.write(response)
         
         

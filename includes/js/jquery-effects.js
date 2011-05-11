@@ -143,8 +143,10 @@ Stream = {
 	errors: 0,
 	currentFetch: null,
 	scrolled: false,
+	running: false,
 	fetch: function() {
-		if(!Stream.run) { return;}
+		if(!Stream.run || Stream.running) { return;}
+		Stream.running = true;
 		var last = Stream.lasts[Stream.eventId];
 		var url = "/update?last=" + last + '&lang=' + Stream.lang + '&event=' + Stream.eventId;
 		Stream.currentFetch = $.getJSON(url, function(response, status) {
@@ -182,12 +184,14 @@ Stream = {
 	   				Stream.lasts[Stream.eventId] = response.last;
 	   			}
 			}
-   			setTimeout(function() {
-	   			Stream.fetch();
-	   		}, Stream.fetchDelay);
+			Stream.running = false;
+			setTimeout(function() {
+				Stream.fetch();
+			}, Stream.fetchDelay);
    		}).error(function() {
    			Stream.errors++;
    			Stream.fetchDelay = Math.min(Stream.maxDelay, Stream.fetchDelay * 2);
+   			Stream.running = false;
    			if(Stream.errors <= Stream.maxRetries) {
    				setTimeout(function() {
    					Stream.fetch();

@@ -66,7 +66,13 @@ languages = [
     ('yi', u'Yiddish'),
 ]
 
-rtl_langs = ['iw', 'ar', 'fa', 'yi']
+# Indicate Right-To-Left languages
+rtl_langs = [
+    'ar',
+    'iw',
+    'fa',
+    'yi',
+]
 
 """
 API-key to use for translation, get one from: https://code.google.com/apis/console/

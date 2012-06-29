@@ -12,8 +12,15 @@ class MainHandler(webapp.RequestHandler):
     @utils.http_p3p
     def get(self):
         lang = self.request.get('lang', 'en')
+        is_android = self.request.get('android', 'f')
+        force_open = self.request.get('open', 'false')
+        theme = self.request.get('theme', 'light')
+        is_auto_open = self.request.get('open_sesame', 'false') != 'false'
         lasts = {}
-        path = 'templates/captions.html'
+        if is_android == 't':
+            path = 'templates/captions-android.html'
+        else:
+            path = 'templates/captions.html'
         events = stream.get_active_events()
         if len(events) == 0:
             start_event = None
@@ -31,6 +38,7 @@ class MainHandler(webapp.RequestHandler):
                     if e.key().name() == start_event_id:
                         start_event = e
         values = {
+            'auto_open': is_auto_open,
             'last' : last,
             'lang': lang,
             'languages': config.languages,
@@ -39,7 +47,9 @@ class MainHandler(webapp.RequestHandler):
             'lasts': simplejson.dumps(lasts),
             'ga_account': config.analytics_account,
             'rtl_langs': simplejson.dumps(config.rtl_langs),
-            'static_version': config.static_version
+            'static_version': config.static_version,
+            'force_open': force_open != 'false',
+            'theme': theme,
         }
         self.response.out.write(template.render(path, values))
 
@@ -51,11 +61,13 @@ class Update(webapp.RequestHandler):
     def get(self):
         lang = self.request.get('lang', 'en')
         last = int(self.request.get('last'))
-        event = self.request.get('event')
+        event_name = self.request.get('event')
         events = stream.get_active_events()
         event_key = None
+        event = None
         for e in events:
-            if e.key().name() == event:
+            if e.key().name() == event_name:
+                event = e
                 event_key = e.streamtext_id
         if event_key is None:
             return
@@ -75,7 +87,8 @@ class Update(webapp.RequestHandler):
                 'last': new_last,
                 'output': output,
                 'status': status,
-                'title': stream.get_title(event_key)
+                'title': stream.get_title(event_key),
+                'delay_ms': event.delay_ms
             })
             if output != '':
                 outputCacheTime = 5

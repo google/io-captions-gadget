@@ -74,11 +74,12 @@ rtl_langs = [
     'yi',
 ]
 
+# Important: Increment version for static includes whenever they are modified.
+static_version = 20
+
 """
 API-key to use for translation, get one from: https://code.google.com/apis/console/
 """
 translate_key = ''
 
 analytics_account = ''
-
-static_version = 11

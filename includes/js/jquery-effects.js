@@ -99,7 +99,7 @@ GOOGLEIO.GENERIC = {
 	},
 	
 	toggleCaptions: function() {
-		var openHeight = 186;
+		var openHeight = '100%';
 		var closedHeight = $('.gadgetHeader').height();
 		$('.captionButton').live('click', function() {
 			$this = $(this);
@@ -144,6 +144,7 @@ Stream = {
 	currentFetch: null,
 	scrolled: false,
 	running: false,
+	displayDelay: 0,
 	fetch: function() {
 		if(!Stream.run || Stream.running) { return;}
 		Stream.running = true;
@@ -151,7 +152,13 @@ Stream = {
 		var url = "/update?last=" + last + '&lang=' + Stream.lang + '&event=' + Stream.eventId;
 		Stream.currentFetch = $.getJSON(url, function(response, status) {
 			if(response) {
-				Stream.container.html(Stream.runDeletes(Stream.container.html() + response.output));
+				// if there's a downward change in the delay, then ramp-down gradually instead of all at once,
+				// which can result in garbled text, as later fragements get shown before earlier ones
+				var delay = Math.max(response.delay_ms || 0, Stream.displayDelay - Stream.fetchDelay);
+				Stream.displayDelay = delay;
+				setTimeout(function() {
+					Stream.container.html(Stream.runDeletes(Stream.container.html() + response.output));
+				}, delay);
 				if(!Stream.scrolled) {
 					Stream.fixScroll();
 				}

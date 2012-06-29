@@ -14,21 +14,22 @@ class AdminHandler(webapp.RequestHandler):
         e1 = stream.Event.get_by_key_name('e1')
         e2 = stream.Event.get_by_key_name('e2')
         statuses = {}
-        for e in[e1, e2]:
+        events_list = [e1, e2]
+        for e in events_list:
             if e is None or e.streamtext_id is None or e.streamtext_id == '':
                 continue
             statuses[e.streamtext_id] = memcache.get('stream-can-run-%s' % e.streamtext_id) is not None
         logging.info("STATUSES")
         logging.info(statuses)
         values = {
-                  'events': [e1, e2],
+                  'events': events_list,
                   'statuses': statuses,
         }
         self.response.out.write(template.render(path, values))
     def post(self):
         
         events = []
-        for i in [1,2]:
+        for i in [1, 2]:
             event_id = self.request.get('event%d' % i )
             logging.info(event_id)
             e = stream.Event.get_by_key_name('e%d' % i)
@@ -44,6 +45,10 @@ class AdminHandler(webapp.RequestHandler):
                 memcache.set(stream.title_cache_key % event_id, e.name)
                 e.order = 1
                 e.active = True
+                try:
+                    e.delay_ms = int(float(self.request.get('delay%d' % i, 0)) * 1000)
+                except ValueError:
+                    e.delay_ms = 0
             else:
                 e.active = False
             events.append(e)

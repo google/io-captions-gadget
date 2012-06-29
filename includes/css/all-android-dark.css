@@ -1,0 +1,435 @@
+/*========================== GENERAL ==========================*/
+
+body {
+  color:#666666;
+}
+
+body.gadget {
+  background:transparent;
+}
+
+a {
+  color:#000;
+  outline:none;
+  text-decoration:none;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  text-decoration:none;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+  text-decoration:underline;
+}
+
+
+h1 {
+}
+
+h2 {
+  margin:0px 0px 10px 0px;
+}
+
+h2 a {
+  color:#E63638;
+}
+
+h3 {
+  margin:0px 0px 5px 0px;
+}
+
+h4,
+h5,
+h6 {
+
+}
+
+p {
+  margin:0px 0px 12px 0px;
+}
+
+
+/*========================= LAYOUT =========================*/
+
+.gadgetIframe {
+  position:absolute;
+  top:676px;
+  left:50px;
+}
+
+.container {
+  margin:0 auto;
+  background:url(/images/backgroundExample.jpg) no-repeat;
+  position:relative;
+}
+
+.gadgetWrapper {
+  position:relative;
+  overflow: hidden;
+}
+
+.gadgetHeader {
+  height:30px;
+  background:#1d63aa url(/images/headerBg.jpg) repeat-x bottom left;
+  padding:0px;
+  color:#fff;
+  font-size:13px;
+  overflow:hidden;
+}
+
+.gadgetHeader h2 {
+  font-family: 'Droid Sans', arial, serif;
+  margin:6px 10px 0 10px;
+}
+
+.gadgetContent {
+   padding:15px 25px 12px 15px;
+   color:#594726;
+   font-size:16px;
+   line-height:24px;
+   position: relative;
+   font-family: 'Droid Sans', arial, serif;
+}
+
+.gadgetContent #captions {
+  width:100%;
+  overflow:hidden;
+}
+
+.gadgetContent #captions .warning {
+  direction: ltr !important;
+}
+
+ul.captionsList {
+  /*height:600px;*/
+}
+
+ul.gadgetControls {
+  list-style:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+  top:4px;
+  left:5px;
+  height:35px;
+  width:100%;
+}
+
+ul.gadgetControls li a {
+  display:block;
+  text-indent:-9999px;
+}
+
+ul.gadgetControls li a.changeLanguge {
+  width:138px;
+  height:24px;
+  background:url(/images/sprite.png?v=3) no-repeat 0px 0px;
+  bottom:-1px;
+  left:25px;
+}
+
+ul.gadgetControls li a.scrollUp,
+ul.gadgetControls li a.scrollDown {
+  width:13px;
+  height:17px;
+  right:0px;
+}
+
+ul.gadgetControls li a.scrollUp {
+  top:2px;
+  background:url(/images/sprite.png?v=3) no-repeat 0px -34px;
+}
+
+ul.gadgetControls li a.scrollDown {
+  top:18px;
+  background:url(/images/sprite.png?v=3) no-repeat 0px -50px;
+}
+
+a.captionButton {
+  position:absolute;
+  top:0px;
+  right:0px;
+  width:52px;
+  height:30px;
+  background:#f7ca55 url(/images/sprite.png?v=3) no-repeat -18px -33px;
+  text-indent:-9999px;
+}
+
+a.captionButton.off {
+  background-position: -72px -33px;
+}
+
+ul.gadgetControls ul.languageList {
+    left: 25px;
+    position: absolute;
+    bottom: 23px;
+    width: 136px;
+    background:#d6d6d6;
+    text-indent:none;
+    font-size:10px;
+    display:none;
+    height:110px;
+    overflow:auto;
+    z-index: 100;
+}
+
+ul.gadgetControls ul.languageList li {
+  border-bottom:1px solid #ddd;
+  padding:2px 5px;
+}
+ul.gadgetControls ul.languageList li.active {
+  background-color: #1c65b4;
+}
+ul.gadgetControls ul.languageList li.active a {
+  color: #fff;
+}
+ul.gadgetControls ul.languageList li a {
+  text-indent:0px;
+    font-size:10px;
+    position:static;
+    color:#0a67c5;
+}
+
+ul.gadgetControls li a.fontSizeLink {
+  position:absolute;
+  bottom:5px;
+  left:170px;
+  width:20px;
+  text-indent:0px;
+  color:#0a67c5;
+}
+ul.gadgetControls li a.fontSizeLink.active {
+  text-decoration: underline;
+}
+ul.gadgetControls li a.smallFontSize {
+  font-size:12px;
+  line-height:12px;
+}
+
+ul.gadgetControls li a.mediumFontSize {
+  font-size:15px;
+  left:190px;
+  line-height:13px;
+}
+
+ul.gadgetControls li a.largeFontSize {
+  font-size:18px;
+  left:210px;
+  line-height:14px;
+}
+
+body.standardText #captions,
+body.standardText .warning
+{
+  font-size:16px;
+  line-height:24px;
+}
+
+body.mediumText #captions,
+body.mediumText .warning
+{
+  font-size:19px;
+  line-height:27px;
+}
+
+body.largeText #captions,
+body.largeText .warning
+{
+  font-size:22px;
+  line-height:30px;
+}
+
+/*========================= FORMS =========================*/
+
+form {
+  display:inline;
+  float:left;
+  margin:0px;
+  padding:0px;
+}
+
+input {
+  clear:both;
+  display:block;
+}
+
+label {
+  clear:both;
+  display:block;
+  float:left;
+  margin:0px 0px 3px 0px;
+}
+
+select {
+  clear:both;
+  display:block;
+}
+
+input.fieldText {
+  background-color:transparent;
+  border:none;
+  color:#FFFFFF;
+  height:15px;
+  margin:0px;
+  padding:0px;
+  width:134px;
+}
+
+textarea.fieldArea {
+  background-color:transparent;
+  border:none;
+  color:#FFFFFF;
+  height:75px;
+  margin:0px;
+  padding:0px;
+  width:334px;
+}
+
+input.fieldCheckRadio {
+  clear:left;
+  display:inline;
+  float:left;
+  height:15px;
+  margin:0px 5px 0px 0px;
+  width:15px;
+}
+
+label.labelCheckRadio {
+  clear:none;
+  display:inline;
+  float:left;
+  margin:0px 0px 10px 0px;
+  *margin:1px 0px 10px 0px;
+}
+
+select.fieldSelect {
+}
+
+input.fieldSubmit {
+  background-color:transparent;
+  border:none;
+  color:#FFFFFF;
+  cursor:pointer;
+  cursor:hand;
+  float:right;
+  font-size:1.6em;
+  font-style:italic;
+  font-weight:bold;
+  margin:0px;
+  overflow:visible;
+  padding:0px;
+  width:auto;
+  _width:1px;
+}
+
+/* Safari */
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{
+  input.fieldSubmit {
+    padding:0px 2px 0px 0px;
+  }
+}
+
+input.fieldImage {
+}
+
+#messageBox {
+  position: absolute;
+  text-align: center;
+  font-size: 1.3em;
+  color: #1C65B4;
+  background-color: #fff;
+  left: 50px;
+  width: 450px;
+  padding: 20px 0pt;
+  top: 25px;
+  opacity: 0.7;
+  -moz-border-radius: 15px 15px 15px 15px;
+  border-radius: 15px 15px 15px 15px;
+}
+
+span.speaker {
+  background-color: #fff;
+  color: #c00;
+}
+
+span.poweredBy {
+  position: absolute;
+  font-size: 0.7em;
+  bottom: 2px;
+  right: 13px;
+}
+
+
+/*========================== CHANGED FOR 2012 IO ==========================*/
+
+.gadgetWrapper {
+  background: black
+;
+  color: white
+;
+  height: 100%;
+  width: 100%;
+}
+
+.gadgetContent {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  height: 100%;
+}
+
+.gadgetHeader {
+  display: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: black
+;
+  color: white
+;
+}
+
+#messageBox {
+  left: 14px;
+  right: 15px;
+  width: auto;
+  border-radius: 0;
+  background: white;
+  color: black;
+}
+
+#captions {
+  height: 99%;
+  background: black
+;
+  color: white
+;
+}
+
+#captions p {
+  color: black
+;
+  margin: 0 0 10px;
+  width: 85%;
+}

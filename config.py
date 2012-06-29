@@ -81,4 +81,6 @@ static_version = 20
 # Get one from https://code.google.com/apis/console/#access (Billing required)
 translate_key = ''
 
+# Google Analytics ID to use for tracking
+# Get one from http://www.google.com/analytics/
 analytics_account = ''

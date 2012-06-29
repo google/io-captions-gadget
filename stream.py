@@ -19,7 +19,7 @@ or
 >> SOME TEXT
 for an unknown speaker
 """
-speaker_id_pattern =  re.compile('(>>(?:\s|\w[^:]+:\s))')                    
+speaker_id_pattern =  re.compile('((>>|>>>)(?:\s|\w[^:]+:\s))')                    
 
 class Event(db.Model):
     cache_key = 'event-is-running-%s'
@@ -27,6 +27,13 @@ class Event(db.Model):
     streamtext_id = db.StringProperty()
     active = db.BooleanProperty()
     default_open = db.BooleanProperty(default=True)
+    delay_ms = db.IntegerProperty(default=0)
+    
+    @property
+    def delay_s(self):
+        ''' Return delay in seconds
+        '''
+        return self.delay_ms / float(1000)
     
     def stop(self):
         c_key = 'stream-can-run-%s' % self.streamtext_id

@@ -77,9 +77,8 @@ rtl_langs = [
 # Important: Increment version for static includes whenever they are modified.
 static_version = 20
 
-"""
-API-key to use for translation, get one from: https://code.google.com/apis/console/
-"""
+# Google Translate API key to use for translation
+# Get one from https://code.google.com/apis/console/#access (Billing required)
 translate_key = ''
 
 analytics_account = ''
